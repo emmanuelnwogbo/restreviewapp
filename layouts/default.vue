@@ -26,15 +26,15 @@ export default {
         panel: document.getElementById("panel"),
         menu: document.getElementById("menu"),
         padding: 256,
-        tolerance: 70,
+        tolerance: 70
       });
 
       slideout.on("beforeopen", () => {
-        this.mobilesidenav = true;
+        //this.mobilesidenav = true;
       });
 
       slideout.on("beforeclose", () => {
-        this.mobilesidenav = false;
+        //this.mobilesidenav = false;
       });
 
       // Toggle button

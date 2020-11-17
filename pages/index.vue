@@ -85,7 +85,7 @@ export default {
 
   &__mobile {
     &--h2 {
-      font-size: 3.4rem;
+      font-size: 2.9rem;
       font-weight: 600;
       color: #000000;
       padding: 3.5rem 2.5rem 1rem;
