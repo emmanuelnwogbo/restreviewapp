@@ -140,6 +140,10 @@ export default {
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
       transition: all 0.3s ease-in;
 
+      @include respond(small-phone) {
+        font-size: 1.7rem;
+      }
+
       &.current {
         background: #e22222;
         color: #fff;

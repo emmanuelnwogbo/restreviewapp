@@ -75,8 +75,15 @@ html {
   }
 
   @include respond(tab-port) {
-    // width < 900?
-    font-size: 50%; //1 rem = 8px, 8/16 = 50%
+    font-size: 52%; //1 rem = 8px, 8/16 = 50%
+  }
+
+  @include respond(small-phone) {
+    font-size: 44%; //1 rem = 8px, 8/16 = 50%
+  }
+
+  @include respond(smaller-phone) {
+    font-size: 37%; //1 rem = 8px, 8/16 = 50%
   }
 
   @include respond(big-desktop) {
