@@ -38,7 +38,7 @@ export default {
       justify-content: center;
       align-items: center;
 
-      //transition: all 0.1s ease;
+      transition: all 0.1s ease;
 
       &.navbaropen {
         transform: translateY(30rem);

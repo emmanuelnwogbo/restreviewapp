@@ -19,22 +19,30 @@ export default {
     };
   },
   mounted() {
-    import("slideout").then((result) => { 
+    import("slideout").then((result) => {
       //console.log('hello there')
       const Slideout = result.default;
       var slideout = new Slideout({
         panel: document.getElementById("panel"),
         menu: document.getElementById("menu"),
         padding: 256,
-        tolerance: 70
+        tolerance: 70,
       });
 
-      slideout.on("open", () => {
-        this.mobilesidenav = true;
+      slideout.on("beforeopen", () => {
+        document.querySelector(".container__mobile--addbusiness").style.zIndex =
+          "-1";
+        document.querySelector(
+          ".container__mobile--addbusiness"
+        ).style.opacity = "0";
       });
 
-      slideout.on("close", () => {
-        this.mobilesidenav = false;
+      slideout.on("beforeclose", () => {
+        document.querySelector(".container__mobile--addbusiness").style.zIndex =
+          "10";
+        document.querySelector(
+          ".container__mobile--addbusiness"
+        ).style.opacity = "1";
       });
 
       // Toggle button
@@ -138,7 +146,6 @@ img {
 .mobile-sidemenu {
   //z-index: 20 !important;
   background: #fff;
-  transition: all .2s ease-out;
+  transition: all 0.2s ease-out;
 }
-
 </style>
