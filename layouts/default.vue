@@ -30,11 +30,11 @@ export default {
       });
 
       slideout.on("beforeopen", () => {
-        //this.mobilesidenav = true;
+        this.mobilesidenav = true;
       });
 
-      slideout.on("beforeclose", () => {
-        //this.mobilesidenav = false;
+      slideout.on("close", () => {
+        this.mobilesidenav = false;
       });
 
       // Toggle button
@@ -134,4 +134,11 @@ img {
 .slideout-open .slideout-menu {
   display: block;
 }
+
+.mobile-sidemenu {
+  //z-index: 20 !important;
+  background: #fff;
+  transition: all .2s ease-out;
+}
+
 </style>
