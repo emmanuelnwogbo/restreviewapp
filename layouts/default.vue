@@ -29,7 +29,7 @@ export default {
         tolerance: 70
       });
 
-      slideout.on("beforeopen", () => {
+      slideout.on("open", () => {
         this.mobilesidenav = true;
       });
 
