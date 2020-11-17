@@ -10,7 +10,7 @@ export default {
    */
   target: "static",
   router: {
-    base: "/"
+    base: "/restreviewapp/"
   },
   /*
    ** Headers of the page
