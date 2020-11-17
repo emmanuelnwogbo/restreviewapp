@@ -19,7 +19,8 @@ export default {
     };
   },
   mounted() {
-    import("slideout").then((result) => {
+    import("slideout").then((result) => { 
+      //console.log('hello there')
       const Slideout = result.default;
       var slideout = new Slideout({
         panel: document.getElementById("panel"),
