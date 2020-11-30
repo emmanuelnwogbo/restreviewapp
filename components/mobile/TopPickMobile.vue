@@ -5,7 +5,7 @@
     </figure>
     <div class="toppickmobile__bottom">
       <p class="toppickmobile__bottom--title">
-        The 10 best hang out spots right now
+        {{ item.title }}
       </p>
       <button class="toppickmobile__bottom--see">See more</button>
     </div>

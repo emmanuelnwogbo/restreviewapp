@@ -1,15 +1,23 @@
 <template>
   <div>
     <div class="mobile-sidemenu" id="menu"></div>
-    <div id="panel">
-      <MobileHeader />
+    <div class="mobile">
+      <div id="panel">
+        <MobileHeader />
+        <Nuxt />
+      </div>
+      <AddBusinessMobile v-bind:mobilesidenav="mobilesidenav" />
+    </div>
+    <div class="desktop">
+      <Header />
       <Nuxt />
     </div>
-    <AddBusinessMobile v-bind:mobilesidenav="mobilesidenav" />
   </div>
 </template>
 
 <script>
+import Header from "@/components/desktop/Header";
+
 import AddBusinessMobile from "@/components/mobile/AddBusinessMobile";
 
 export default {
@@ -20,7 +28,6 @@ export default {
   },
   mounted() {
     import("slideout").then((result) => {
-      //console.log('hello there')
       const Slideout = result.default;
       var slideout = new Slideout({
         panel: document.getElementById("panel"),
@@ -45,7 +52,6 @@ export default {
         ).style.opacity = "1";
       });
 
-      // Toggle button
       document
         .querySelector(".toggle-button")
         .addEventListener("click", function () {
@@ -103,6 +109,16 @@ body {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+    opacity: 0;
+  }
+
+  &::-moz-scrollbar {
+    width: 0px;
+    opacity: 0;
+  }
 }
 
 img {
@@ -117,7 +133,14 @@ img {
 
   @include respond(tab-land) {
     display: block;
-    //position: relative;
+  }
+}
+
+.desktop {
+  display: block;
+
+  @include respond(tab-land) {
+    display: none;
   }
 }
 

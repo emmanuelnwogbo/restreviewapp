@@ -61,10 +61,14 @@ export default {
 <style lang="scss" scoped>
 .mobileheader {
   background: #f4f4f4;
-  display: flex;
   flex-direction: column;
   padding: 1.8rem;
   min-height: 20rem;
+  display: none;
+
+  @include respond(tab-land) {
+    display: flex;
+  }
 
   &__top {
     display: flex;

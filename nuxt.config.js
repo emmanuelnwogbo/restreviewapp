@@ -10,7 +10,7 @@ export default {
    */
   target: "static",
   router: {
-    base: "/restreviewapp/"
+    base: "/restreviewapp"
   },
   /*
    ** Headers of the page
@@ -63,9 +63,5 @@ export default {
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
-  build: {},
-  server: {
-    port: 3000, // default: 3000
-    host: "0.0.0.0" // default: localhost
-  }
+  build: {}
 };

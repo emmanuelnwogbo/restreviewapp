@@ -33,12 +33,25 @@ export default {
       height: 15rem;
       width: 100vw;
       z-index: 10;
-      background: #e5e5e5;
-      display: flex;
+      //background: rgba(#e5e5e5, 0.5);
       justify-content: center;
       align-items: center;
 
+      background: transparent;
+
+      /*-webkit-filter: blur(0.4rem);
+      -moz-filter: blur(0.4rem);
+      -o-filter: blur(0.4rem);
+      -ms-filter: blur(0.4rem);
+      filter: blur(0.4rem);*/
+
       transition: all 0.1s ease;
+
+      display: none;
+
+      @include respond(tab-land) {
+        display: flex;
+      }
 
       &.navbaropen {
         transform: translateY(30rem);
@@ -61,6 +74,8 @@ export default {
         border-radius: 3rem;
         padding: 1.5rem 3rem;
         font-size: 2.5rem;
+
+        filter: blur(0);
       }
     }
   }

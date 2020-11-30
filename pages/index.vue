@@ -33,14 +33,23 @@
             </div>
           </div>
         </div>
-
-        
       </div>
+    </div>
+
+    <div class="desktop">
+      <Jumbotron />
+      <TopPicks />
+      <RecentlyViewed />
+      <div class="padding-bottom"></div>
     </div>
   </div>
 </template>
 
 <script>
+import Jumbotron from "@/components/desktop/Jumbotron";
+import TopPicks from "@/components/desktop/TopPicks";
+import RecentlyViewed from "@/components/desktop/RecentlyViewed";
+
 import MobileHeader from "@/components/mobile/MobileHeader";
 import Track from "@/components/mobile/Track";
 import MobileNearby from "@/components/mobile/MobileNearby";
@@ -56,6 +65,14 @@ export default {
     MobileBudget,
     MobileReviewedCard,
     AddBusinessMobile,
+  },
+  mounted() {
+    window.addEventListener("scroll", () => {
+      this.$store.dispatch(
+        "updateScrollValAction",
+        window.pageYOffset / (document.body.offsetHeight - window.innerHeight)
+      );
+    });
   },
   computed: {
     top_picks() {
@@ -151,5 +168,9 @@ export default {
       }
     }
   }
+}
+
+.padding-bottom {
+  padding-bottom: 4rem;
 }
 </style>
