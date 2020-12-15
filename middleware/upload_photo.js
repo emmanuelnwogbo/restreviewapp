@@ -1,5 +1,12 @@
 import axios from "axios";
 
+const node_env = process.env.NODE_ENV;
+
+const base_api_url =
+  node_env === "development"
+    ? "http://localhost:1337"
+    : "https://api-boiler-strapi-k7c6n.ondigitalocean.app";
+
 export default {
   upload_user_avatar(user_id, user_jwt) {
     const options = {
@@ -15,7 +22,7 @@ export default {
       parent_id: user_id
     };
 
-    axios.post("http://localhost:1337/aws-images", data, options).then(
+    axios.post(`${base_api_url}/aws-images`, data, options).then(
       response => {
         console.log(response, "added user avatar");
       },
