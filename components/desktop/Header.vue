@@ -2,7 +2,7 @@
   <div
     class="header"
     v-bind:class="{
-      orangered: scroll_value > 0,
+      orangered: scroll_value > 0 || current_route !== 'index',
     }"
   >
     <div class="header__left header__side">
@@ -19,6 +19,7 @@
         class="header__side--item"
         v-for="(menu, index) in right_menu"
         :key="index"
+        @click="openform(menu)"
       >
         {{ menu }}
       </div>
@@ -35,7 +36,19 @@ export default {
       right_menu: ["Login", "Sign up"],
     };
   },
+  methods: {
+    openform(val) {
+      if (val === "Sign up") {
+        return this.$router.push("/signup");
+      }
+
+      return this.$router.push("/login");
+    },
+  },
   computed: {
+    current_route() {
+      return this.$route.name;
+    },
     scroll_value() {
       const scroll_value = this.$store.getters.scroll_value;
 
@@ -69,6 +82,7 @@ export default {
     cursor: pointer;
 
     &--item {
+      font-weight: 500;
       &:not(:nth-child(1)) {
         margin-left: 5rem;
       }

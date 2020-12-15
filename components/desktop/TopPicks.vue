@@ -67,7 +67,7 @@ export default {
 
     &--h2 {
       font-weight: 700;
-      font-size: 3rem;
+      font-size: 2.3rem;
       width: 31rem;
       color: rgba(0, 0, 0, 0.7);
 

@@ -1,4 +1,10 @@
 import Vuex from "vuex";
+import axios from "axios";
+
+import upload_photo from "@/middleware/upload_photo";
+
+const { upload_user_avatar } = upload_photo;
+const node_env = process.env.NODE_ENV;
 
 const createStore = () => {
   return new Vuex.Store({
@@ -6,6 +12,23 @@ const createStore = () => {
       scroll_val: 0,
       tab_menu: ["Top picks", "Nearby", "On a budget", "Now opened"],
       current_tab: "Top picks",
+      user_avatar: {},
+      user_token: "",
+      base_api_url:
+        node_env === "development"
+          ? "http://localhost:1337"
+          : "https://api-boiler-strapi-k7c6n.ondigitalocean.app",
+      user: {},
+      signup_input: {
+        username: "",
+        email: "",
+        password: "",
+        confirmpassword: ""
+      },
+      signin_input: {
+        identifier: "",
+        password: ""
+      },
       top_picks: [
         {
           id: 0,
@@ -263,6 +286,18 @@ const createStore = () => {
       },
       updateScrollVal(state, data) {
         state.scroll_val = data;
+      },
+      updateSignupInput(state, data) {
+        state.signup_input = data;
+      },
+      updateSigninInput(state, data) {
+        state.signin_input = data;
+      },
+      updateUserToken(state, data) {
+        state.user_token = data;
+      },
+      updateUser(state, data) {
+        state.user = data;
       }
     },
     actions: {
@@ -271,6 +306,52 @@ const createStore = () => {
       },
       updateScrollValAction(vuexContext, data) {
         vuexContext.commit("updateScrollVal", data);
+      },
+      updateSignupInputAction(vuexContext, data) {
+        vuexContext.commit("updateSignupInput", data);
+      },
+      updateSigninInputAction(vuexContext, data) {
+        vuexContext.commit("updateSigninInput", data);
+      },
+      signUp({ state, commit }) {
+        axios
+          .post(`${state.base_api_url}/auth/local/register`, {
+            username: state.signup_input.username,
+            email: state.signup_input.email,
+            password: state.signup_input.password
+          })
+          .then(
+            res => {
+              const data = res.data;
+              commit("updateUserToken", data.jwt);
+              commit("updateUser", data.user);
+              upload_user_avatar(data.user.id, data.jwt);
+            },
+            error => {
+              console.log(error);
+            }
+          );
+      },
+      signIn({ state, commit }) {
+        axios
+          .post(`${state.base_api_url}/auth/local`, {
+            identifier: state.signin_input.identifier,
+            password: state.signin_input.password
+          })
+          .then(res => {
+            const data = res.data;
+            commit("updateUserToken", data.jwt);
+            commit("updateUser", data.user);
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      },
+      updateUserTokenAction(vuexContext, data) {
+        vuexContext.commit("updateUserToken", data);
+      },
+      updateUserAction(vuexContext, data) {
+        vuexContext.commit("updateUser", data);
       }
     },
     getters: {
@@ -288,6 +369,9 @@ const createStore = () => {
       },
       scroll_value(state) {
         return state.scroll_val;
+      },
+      base_api_url(state) {
+        return state.base_api_url;
       }
     }
   });
