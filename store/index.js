@@ -14,10 +14,7 @@ const createStore = () => {
       current_tab: "Top picks",
       user_avatar: {},
       user_token: "",
-      base_api_url:
-        node_env === "development"
-          ? "http://localhost:1337"
-          : "https://api-boiler-strapi-k7c6n.ondigitalocean.app",
+      base_api_url: "https://api-boiler-strapi-k7c6n.ondigitalocean.app",
       user: {},
       signup_input: {
         username: "",
